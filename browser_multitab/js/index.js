@@ -1,27 +1,33 @@
-document.addEventListener('DOMContentLoaded', OnContentLoad);
+import * as ls from "./modules/local_storage.js";
+import * as bc from "./modules/broadcast_channel.js";
 
+document.addEventListener("DOMContentLoaded", OnContentLoad);
+document.getElementById("BroadcastChannelButton").addEventListener("click", OnBroadcastChannelButtonClick);
+const broadcastChannel = bc.SubscribeToChannel();
 
 function OnCreateTabButtonClick(event) {
-    window.open("tab.html", "_blank");
+  window.open("tab.html", "_blank");
 }
 
-function OnContentLoad(event){
-    document.getElementById('IncrementButton').addEventListener('click', OnIncrementButtonClick);
-document.getElementById('DecrementButton').addEventListener('click', OnDecrementButtonClick);
-document.getElementById('CreateTabButton').addEventListener('click', OnCreateTabButtonClick);
-listenStorage();
-    console.log('OnMainPageLoad: ', event);
+function OnContentLoad(event) {
+  document.getElementById("IncrementButton").addEventListener("click", ls.OnIncrementButtonClick);
+  document.getElementById("DecrementButton").addEventListener("click", ls.OnDecrementButtonClick);
+  document.getElementById("CreateTabButton").addEventListener("click", OnCreateTabButtonClick);
 
-    // key for the syncronized resource for storing in local storage
-    // reset local storage on reloading index page
-    localStorage.clear();
+  ls.listenStorage();
+  ls.initializeLocalStorage();
 
-    // initialize shared resource
-    let initialValue = 0;
+  bc.ListenToBroadcastChannel(broadcastChannel, OnBroadcastChannelMessageReceived);
+}
 
-    // save to the local storage for further accessing from another browsing contexts.
-    localStorage.setItem(window.sharedCounterKey, initialValue);
+function OnBroadcastChannelButtonClick() {
+  var element = document.getElementById("BroadcastChannelData");
+  var message = element.value;
+  bc.BroadcastMessage(broadcastChannel, message);
+}
 
-    // show value on the index page
-    document.getElementById("SharedCounter").innerHTML = initialValue;
+function OnBroadcastChannelMessageReceived(event) {
+  console.log("OnBroadcastChannelReceiveMessage event: " + event);
+  var element = document.getElementById("BroadcastChannelDataLabel");
+  element.textContent = event.data;
 }

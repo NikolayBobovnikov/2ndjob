@@ -1,20 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main page</title>
-  </head>
-  <body>
-    <label>Shared counter value: </label>
-    <label id="SharedCounter"></label>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Sync type</th>
+            <th>Shared data</th>
+            <th>Actions</th>
+            <th>Comment</th>
+        </tr>
+        <tr>
+            <td>Local storage</td>
+            <td>
+                <label>Shared counter value: </label>
+                <label id="SharedCounter"></label>
+            </td>
+            <td>
+                <button type="button" id="IncrementButton">+</button>
+                <button type="button" id="DecrementButton">-</button>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Broadcast channel</td>
+            <td>
+                <label>Broadcast channel data: </label>
+                <label id="BroadcastChannelDataLabel"></label>
+            </td>
+            <td>
+                <textarea id="BroadcastChannelData">Type here</textarea>
+                <button type="button" id="BroadcastChannelButton">Set value</button>
+            </td>
+            <td>Not supported on internet explorer</td>
+        </tr>
+        <tr>
+            <td>Service workers</td>
+            <td>
+                <label>Service workers data: </label>
+                <label id="ServiceWorkerDataLabel"></label>
+            </td>
+            <td>
+                <textarea id="ServiceWorkierData">Type here</textarea>
+                <button type="button" id="ServiceWorkerButton">Set value</button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
     <form>
-      <button type="button" id="CreateTabButton">Create tab</button>
-      <button type="button" id="IncrementButton">Increment counter</button>
-      <button type="button" id="DecrementButton">Decrement counter</button>
+        <button type="button" id="CreateTabButton">Create tab</button>
     </form>
-    <script src="./js/globals.js"></script>
-    <script src="./js/index.js"></script>
-  </body>
+    <script type="module" src="./js/index.js"></script>
+</body>
+
 </html>
