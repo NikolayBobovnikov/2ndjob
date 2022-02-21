@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New tab</title>
-  </head>
+</head>
 
-  <body>
-    <label>Shared counter value: </label>
-    <label id="SharedCounter"></label>
-    <form>
-      <button type="button" id="IncrementButton">Increment counter</button>
-      <button type="button" id="DecrementButton">Decrement counter</button>
-    </form>
+<body>
+    <label>Shared data: </label>
+    <label id="DataLabel"></label>
+    <table>
+        <tr>
+            <th>Sync type</th>
+            <th>Action</th>
+            <th>Comment</th>
+        </tr>
+        <tr>
+            <td>Local storage</td>
+            <td>
+                <textarea id="LocalStorageData">Type here</textarea>
+                <button type="button" id="LocalStorageButton">Set data</button>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Broadcast channel</td>
+            <td>
+                <textarea id="BroadcastChannelData">Type here</textarea>
+                <button type="button" id="BroadcastChannelButton">Set data</button>
+            </td>
+            <td>Not supported on internet explorer</td>
+        </tr>
+        <tr>
+            <td>Service worker</td>
+            <td>
+                <textarea id="ServiceWorkerData">Type here</textarea>
+                <button type="button" id="ServiceWorkerButton">Set data</button>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Window post</td>
+            <td>
+                <textarea id="WindowPostData">Type here</textarea>
+                <button type="button" id="WindowPostButton">Set data</button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
 
-    <label>Broadcast channel data: </label>
-    <label id="BroadcastChannelDataLabel"></label>
-    <textarea id="BroadcastChannelData"></textarea>
-    <button type="button" id="BroadcastChannelButton">Set value</button>
-    <script type="module" src="./js/tab.js"></script>
-  </body>
+    <script type="module" src="./js/script.js"></script>
+</body>
+
 </html>

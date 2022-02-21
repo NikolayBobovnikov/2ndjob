@@ -17,46 +17,45 @@
 </head>
 
 <body>
+    <label>Shared data: </label>
+    <label id="DataLabel"></label>
+    <label>Received from: </label>
+    <label id="SourceLabel"></label>
     <table>
         <tr>
             <th>Sync type</th>
-            <th>Shared data</th>
-            <th>Actions</th>
+            <th>Action</th>
             <th>Comment</th>
         </tr>
         <tr>
             <td>Local storage</td>
             <td>
-                <label>Shared counter value: </label>
-                <label id="SharedCounter"></label>
-            </td>
-            <td>
-                <button type="button" id="IncrementButton">+</button>
-                <button type="button" id="DecrementButton">-</button>
+                <textarea id="LocalStorageData">Type here</textarea>
+                <button type="button" id="LocalStorageButton">Set data</button>
             </td>
             <td></td>
         </tr>
         <tr>
             <td>Broadcast channel</td>
             <td>
-                <label>Broadcast channel data: </label>
-                <label id="BroadcastChannelDataLabel"></label>
-            </td>
-            <td>
                 <textarea id="BroadcastChannelData">Type here</textarea>
-                <button type="button" id="BroadcastChannelButton">Set value</button>
+                <button type="button" id="BroadcastChannelButton">Set data</button>
             </td>
             <td>Not supported on internet explorer</td>
         </tr>
         <tr>
-            <td>Service workers</td>
+            <td>Service worker</td>
             <td>
-                <label>Service workers data: </label>
-                <label id="ServiceWorkerDataLabel"></label>
+                <textarea id="ServiceWorkerData">Type here</textarea>
+                <button type="button" id="ServiceWorkerButton">Set data</button>
             </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Window post</td>
             <td>
-                <textarea id="ServiceWorkierData">Type here</textarea>
-                <button type="button" id="ServiceWorkerButton">Set value</button>
+                <textarea id="WindowPostData">Type here</textarea>
+                <button type="button" id="WindowPostButton">Set data</button>
             </td>
             <td></td>
         </tr>
@@ -65,7 +64,7 @@
     <form>
         <button type="button" id="CreateTabButton">Create tab</button>
     </form>
-    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/script.js"></script>
 </body>
 
 </html>
