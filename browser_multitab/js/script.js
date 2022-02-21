@@ -16,16 +16,21 @@ function OnContentLoad(event) {
     document.getElementById("LocalStorageButton").addEventListener("click", OnLocalStorageButtonClick);
 
     // setup local storage
-    ls.ListenToStorage(OnLocalStorageUpdated);
+    ls.ListenToStorage(OnMessageReceived);
     ls.ClearLocalStorage();
 
     // setup broadcast channel
     window.broadcastChannel = bc.SubscribeToChannel();
-    bc.ListenToBroadcastChannel(broadcastChannel, OnBroadcastChannelMessageReceived);
+    bc.ListenToBroadcastChannel(broadcastChannel, OnMessageReceived);
 }
 
 function OnCreateTabButtonClick(event) {
     window.open("tab.html", "_blank");
+}
+
+function OnMessageReceived(message, source) {
+    document.getElementById("DataLabel").innerHTML = message;
+    document.getElementById("SourceLabel").innerHTML = source;
 }
 
 function OnLocalStorageButtonClick(event) {
@@ -36,22 +41,7 @@ function OnLocalStorageButtonClick(event) {
     ls.PostMessage(element.value);
 }
 
-function OnLocalStorageUpdated(event) {
-    console.log("OnLocalStorageUpdated");
-    console.log(event);
-    var element = document.getElementById("DataLabel");
-    var value = ls.GetStorageValue();
-    element.innerHTML = value;
-}
-
 function OnBroadcastChannelButtonClick(event) {
     var element = document.getElementById("BroadcastChannelData");
     bc.BroadcastMessage(broadcastChannel, element.value);
-}
-
-function OnBroadcastChannelMessageReceived(event) {
-    console.log("OnBroadcastChannelReceiveMessage event: ");
-    console.log(event);
-    var element = document.getElementById("DataLabel");
-    element.innerHTML = event.data;
 }

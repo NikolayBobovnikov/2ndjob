@@ -8,10 +8,9 @@ export function SubscribeToChannel() {
 }
 
 export function BroadcastMessage(bc, message) {
-    // Example of sending of a very simple message
     bc.postMessage(message);
 }
 
-export function ListenToBroadcastChannel(bc, handler) {
-    bc.onmessage = handler;
+export function ListenToBroadcastChannel(bc, processMessageCallback) {
+    bc.onmessage = (event) => processMessageCallback(event.data, "Broadcast channel");
 }

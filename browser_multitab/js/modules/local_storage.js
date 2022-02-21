@@ -13,8 +13,8 @@ export function PostMessage(message) {
 }
 
 // Subscribe to the storage event
-export function ListenToStorage(handler) {
-    window.addEventListener("storage", handler);
+export function ListenToStorage(processMessageCallback) {
+    window.addEventListener("storage", (event) => processMessageCallback(event.newValue, event.type));
 }
 
 export function GetStorageValue() {
