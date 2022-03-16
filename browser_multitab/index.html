@@ -19,6 +19,7 @@
 <body>
     <label>Shared data: </label>
     <label id="DataLabel"></label>
+    <br/>
     <label>Received from: </label>
     <label id="SourceLabel"></label>
     <table>
@@ -33,7 +34,7 @@
                 <textarea id="LocalStorageData">Type here</textarea>
                 <button type="button" id="LocalStorageButton">Set data</button>
             </td>
-            <td>Can only contain strings. Storage size is restricted to 5MB</td>
+            <td>Syncronous. Can only contain strings. Storage size is restricted to 5MB</td>
         </tr>
         <tr>
             <td>Broadcast channel</td>
@@ -49,7 +50,7 @@
                 <textarea id="ServiceWorkerData">Type here</textarea>
                 <button type="button" id="ServiceWorkerButton">Set data</button>
             </td>
-            <td></td>
+            <td>Asyncronous. Storage size is bigger (depends on browser).</td>
         </tr>
         <tr>
             <td>Window post</td>

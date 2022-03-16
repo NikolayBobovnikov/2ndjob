@@ -1,5 +1,6 @@
 {
   "liveServer.settings.port": 5502,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "jshint.lintHTML": true
 }

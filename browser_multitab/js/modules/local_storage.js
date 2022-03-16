@@ -8,13 +8,15 @@ export function ClearLocalStorage() {
 
 // Post message to the storage
 export function PostMessage(message) {
+    console.log("PostMessage: " + message);
     // save to the local storage for further accessing from another browsing contexts.
     localStorage.setItem(window.sharedDataKey, message);
 }
 
 // Subscribe to the storage event
 export function ListenToStorage(processMessageCallback) {
-    window.addEventListener("storage", (event) => processMessageCallback(event.newValue, event.type));
+    console.log("ListenToStorage ");
+    window.addEventListener("storage", (event) => processMessageCallback(event.newValue, "Local storage"));
 }
 
 export function GetStorageValue() {

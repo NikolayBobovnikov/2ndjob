@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", OnContentLoad);
 
 function OnContentLoad(event) {
     var page = window.location.pathname.split("/").pop();
+    console.log("OnContentLoad: " + page);
 
     // add handler to create tab button click for main page
     if (page == "index.html") {
@@ -23,15 +24,15 @@ function OnContentLoad(event) {
     window.broadcastChannel = bc.SubscribeToChannel();
     bc.ListenToBroadcastChannel(broadcastChannel, OnMessageReceived);
 
-    // service worker
-    // Проверка того, что наш браузер поддерживает Service Worker API.
+    // Check that the browser supportst Service Worker API.
     if ("serviceWorker" in navigator) {
         // Весь код регистрации у нас асинхронный.
         navigator.serviceWorker
-            .register("sw.js")
+            .register("./js/modules/sw.js")
             .then(() =>
                 navigator.serviceWorker.ready.then((worker) => {
-                    worker.sync.register("syncdata");
+                    console.log("service worker is ready");
+                    worker.message;
                 })
             )
             .catch((err) => console.log(err));
@@ -43,15 +44,12 @@ function OnCreateTabButtonClick(event) {
 }
 
 function OnMessageReceived(message, source) {
-    document.getElementById("DataLabel").innerHTML = message;
-    document.getElementById("SourceLabel").innerHTML = source;
+    document.getElementById("DataLabel").innerText = message;
+    document.getElementById("SourceLabel").innerText = source;
 }
 
 function OnLocalStorageButtonClick(event) {
-    console.log("OnLocalStorageButtonClick");
-    console.log(event);
     var element = document.getElementById("LocalStorageData");
-    console.log(element);
     ls.PostMessage(element.value);
 }
 
