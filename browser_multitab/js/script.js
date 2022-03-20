@@ -17,12 +17,12 @@ function OnContentLoad(event) {
     document.getElementById("LocalStorageButton").addEventListener("click", OnLocalStorageButtonClick);
 
     // setup local storage
-    ls.ListenToStorage(OnMessageReceived);
+    ls.ListenToStorage(callback_ls);
     ls.ClearLocalStorage();
 
     // setup broadcast channel
     window.broadcastChannel = bc.SubscribeToChannel();
-    bc.ListenToBroadcastChannel(broadcastChannel, OnMessageReceived);
+    bc.ListenToBroadcastChannel(broadcastChannel, callback_bc);
 
     // Check that the browser supportst Service Worker API.
     if ("serviceWorker" in navigator) {
@@ -46,6 +46,14 @@ function OnCreateTabButtonClick(event) {
 function OnMessageReceived(message, source) {
     document.getElementById("DataLabel").innerText = message;
     document.getElementById("SourceLabel").innerText = source;
+}
+
+function callback_ls(message, source) {
+    OnMessageReceived(message, source);
+}
+
+function callback_bc(message, source) {
+    OnMessageReceived(message, source);
 }
 
 function OnLocalStorageButtonClick(event) {

@@ -1,5 +1,5 @@
 // key for the syncronized resource for storing in local storage
-export const sharedDataKey = "SharedData";
+export const localStorageKey = "SharedData";
 
 // Clear local storage and add initial value of shared counter into it
 export function ClearLocalStorage() {
@@ -8,9 +8,15 @@ export function ClearLocalStorage() {
 
 // Post message to the storage
 export function PostMessage(message) {
+    var previousValue = localStorage.getItem(window.localStorageKey);
+
+    if (message == previousValue) {
+        alert("Value being saved to local storage has't changed, event recepients won't be notified.");
+    }
+
     console.log("PostMessage: " + message);
     // save to the local storage for further accessing from another browsing contexts.
-    localStorage.setItem(window.sharedDataKey, message);
+    localStorage.setItem(window.localStorageKey, message);
 }
 
 // Subscribe to the storage event
@@ -20,5 +26,5 @@ export function ListenToStorage(processMessageCallback) {
 }
 
 export function GetStorageValue() {
-    return localStorage.getItem(window.sharedDataKey);
+    return localStorage.getItem(window.localStorageKey);
 }
