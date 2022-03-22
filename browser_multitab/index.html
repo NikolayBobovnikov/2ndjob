@@ -1,71 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main page</title>
 
     <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <label>Shared data: </label>
     <label id="DataLabel"></label>
-    <br/>
+    <br />
     <label>Received from: </label>
     <label id="SourceLabel"></label>
     <table>
-        <tr>
-            <th>Sync type</th>
-            <th>Action</th>
-            <th>Comment</th>
-        </tr>
-        <tr>
-            <td>Local storage</td>
-            <td>
-                <textarea id="LocalStorageData">Type here</textarea>
-                <button type="button" id="LocalStorageButton">Set data</button>
-            </td>
-            <td>Syncronous. Can only contain strings. Storage size is restricted to 5MB</td>
-        </tr>
-        <tr>
-            <td>Broadcast channel</td>
-            <td>
-                <textarea id="BroadcastChannelData">Type here</textarea>
-                <button type="button" id="BroadcastChannelButton">Set data</button>
-            </td>
-            <td>Not supported on internet explorer</td>
-        </tr>
-        <tr>
-            <td>Service worker</td>
-            <td>
-                <textarea id="ServiceWorkerData">Type here</textarea>
-                <button type="button" id="ServiceWorkerButton">Set data</button>
-            </td>
-            <td>Asyncronous. Storage size is bigger (depends on browser).</td>
-        </tr>
-        <tr>
-            <td>Window post</td>
-            <td>
-                <textarea id="WindowPostData">Type here</textarea>
-                <button type="button" id="WindowPostButton">Set data</button>
-            </td>
-            <td></td>
-        </tr>
+      <tr>
+        <th>Sync type</th>
+        <th>Action</th>
+        <th>Comment</th>
+      </tr>
+      <tr>
+        <td>Local storage</td>
+        <td>
+          <textarea id="LocalStorageData">Type here</textarea>
+          <button type="button" id="LocalStorageButton">Set data</button>
+        </td>
+        <td>Syncronous. Can only contain strings. Storage size is restricted to 5MB</td>
+      </tr>
+      <tr>
+        <td>Broadcast channel</td>
+        <td>
+          <textarea id="BroadcastChannelData">Type here</textarea>
+          <button type="button" id="BroadcastChannelButton">Set data</button>
+        </td>
+        <td>Not supported on internet explorer</td>
+      </tr>
+      <tr>
+        <td>Service worker</td>
+        <td>
+          <textarea id="ServiceWorkerData">Type here</textarea>
+          <button type="button" id="ServiceWorkerButton">Set data</button>
+        </td>
+        <td>
+          Asyncronous. Storage size is bigger compared to local storage (depends on browser).<br />
+          Only runs over HTTPS (localhost considered safe and works as well)
+        </td>
+      </tr>
+      <tr>
+        <td>Window post</td>
+        <td>
+          <textarea id="WindowPostData">Type here</textarea>
+          <button type="button" id="WindowPostButton">Set data</button>
+        </td>
+        <td></td>
+      </tr>
     </table>
 
     <form>
-        <button type="button" id="CreateTabButton">Create tab</button>
+      <button type="button" id="CreateTabButton">Create tab</button>
     </form>
     <script type="module" src="./js/script.js"></script>
-</body>
-
+  </body>
 </html>
